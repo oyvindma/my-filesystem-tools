@@ -1,9 +1,11 @@
 package oma.utils.repository;
 
 import static org.fest.assertions.Assertions.assertThat;
+import static oma.utils.filrydding.ObjectMother.*;
 import static org.junit.Assert.fail;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.List;
 
@@ -13,17 +15,16 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-public class FileRepositoryTest {
+public class FileRepositoryImplTest {
 	
 	@Rule
 	public TemporaryFolder sourceFolder = new TemporaryFolder();
-	private FileRepository repository;
+	private FileRepositoryImpl repository;
 	
 	@Before
 	public void setUp() throws IOException{
 		sourceFolder.create();
-		repository = new FileRepository();
-		
+		repository = new FileRepositoryImpl();
 	}
 
 	@Test
@@ -61,7 +62,8 @@ public class FileRepositoryTest {
 		}
 		
 	}
-
+	
+	
 }
 
 
