@@ -23,6 +23,7 @@ public class MyApp {
 		
 		Filegroups filesGroupedByTransformedFilename = fileFinderService.getFilesGroupedByTransformedFilename(parentDirectory, filenameFilter, transformer);
 
+		//TODO create Filegroup to hold List<PictureFile> and methods to extract relevant data.
 		Map<String, List<PictureFile>> groupsWithMoreThanOneFile = filesGroupedByTransformedFilename.getGroupsWithMoreThanOneFile();
 		
 		Iterator<Entry<String, List<PictureFile>>> iterator = groupsWithMoreThanOneFile.entrySet().iterator(); 
