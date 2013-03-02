@@ -9,7 +9,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import oma.utils.filrydding.domain.MapList;
+import oma.utils.filrydding.domain.Filegroups;
 import oma.utils.filrydding.domain.PictureFile;
 import oma.utils.repository.FileRepository;
 import oma.utils.repository.MobilephotoFilenamefilter;
@@ -19,7 +19,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-public class DuplicateFileFinderServiceTest {
+public class FileServiceTest {
 	private List<File> mockedFiles;
 
 	@Mock
@@ -27,7 +27,7 @@ public class DuplicateFileFinderServiceTest {
 
 	private FilenameTransformer filenameTransformer;
 
-	private DuplicateFileFinderService duplicateFileFinderService;
+	private FileService duplicateFileFinderService;
 
 	private File parentDirectory;
 
@@ -39,7 +39,7 @@ public class DuplicateFileFinderServiceTest {
 		filenameTransformer = new FilenameTransformer();
 		parentDirectory = new File("");
 		filenameFilter = new MobilephotoFilenamefilter();
-		duplicateFileFinderService = new DuplicateFileFinderService(repoMock);
+		duplicateFileFinderService = new FileService(repoMock);
 
 		mockedFiles = new ArrayList<File>();
 		mockedFiles.add(file_2010_08_28_18_19_19);
@@ -50,7 +50,7 @@ public class DuplicateFileFinderServiceTest {
 	@Test
 	public void shallReturnAListOfFilesWithSameDigitSequenceInTheFilename() throws Exception {
 		when(repoMock.findFilesInDirectory(any(File.class), any(MobilephotoFilenamefilter.class))).thenReturn(mockedFiles);
-		MapList duplicatedPictures = duplicateFileFinderService.getFilesGroupedByTransformedFilename(parentDirectory, filenameFilter,
+		Filegroups duplicatedPictures = duplicateFileFinderService.getFilesGroupedByTransformedFilename(parentDirectory, filenameFilter,
 		        filenameTransformer);
 
 		List<PictureFile> pictures = duplicatedPictures.get(filenameTransformer.transformFilename(file_2010_08_28_18_19_19.getName()));
@@ -66,7 +66,7 @@ public class DuplicateFileFinderServiceTest {
 		mockedFiles.add(file_2010_08_22_13_12_13);
 		when(repoMock.findFilesInDirectory(any(File.class), any(MobilephotoFilenamefilter.class))).thenReturn(mockedFiles);
 		
-		MapList duplicatedPictures = duplicateFileFinderService.getFilesGroupedByTransformedFilename(parentDirectory, filenameFilter,
+		Filegroups duplicatedPictures = duplicateFileFinderService.getFilesGroupedByTransformedFilename(parentDirectory, filenameFilter,
 		        filenameTransformer);
 
 		List<PictureFile> pictures = duplicatedPictures.get(filenameTransformer.transformFilename(file_2010_08_28_18_19_19.getName()));

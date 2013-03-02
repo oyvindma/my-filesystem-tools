@@ -1,11 +1,9 @@
 package oma.utils.repository;
 
 import static org.fest.assertions.Assertions.assertThat;
-import static oma.utils.filrydding.ObjectMother.*;
 import static org.junit.Assert.fail;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.List;
 

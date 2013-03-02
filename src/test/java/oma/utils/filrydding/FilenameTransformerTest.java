@@ -5,8 +5,6 @@ import static org.fest.assertions.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.google.common.base.CharMatcher;
-
 public class FilenameTransformerTest {
 	
 	

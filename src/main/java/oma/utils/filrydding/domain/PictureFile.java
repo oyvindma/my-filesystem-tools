@@ -13,6 +13,10 @@ public class PictureFile{
 	public String getFileName() {
         return file.getName();
     }
+	
+	public long getSize(){
+		return file.length();
+	}
 
 	@Override
     public int hashCode() {
@@ -20,6 +24,11 @@ public class PictureFile{
 	    int result = 1;
 	    result = prime * result + ((file == null) ? 0 : file.hashCode());
 	    return result;
+    }
+
+	@Override
+    public String toString() {
+	    return file.getName();
     }
 
 	@Override

@@ -1,25 +1,25 @@
 package oma.utils.filrydding;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.util.List;
 
-import oma.utils.filrydding.domain.MapList;
+import oma.utils.filrydding.domain.Filegroups;
 import oma.utils.filrydding.domain.PictureFile;
 import oma.utils.repository.FileRepository;
-import oma.utils.repository.MobilephotoFilenamefilter;
 
-public class DuplicateFileFinderService {
+public class FileService {
 
 	private FileRepository fileRepository;
 
-	public DuplicateFileFinderService(FileRepository fileRepository) {
+	public FileService(FileRepository fileRepository) {
 		this.fileRepository = fileRepository;
     }
 
-	public MapList getFilesGroupedByTransformedFilename(File parentDirectory, MobilephotoFilenamefilter filenameFilter, FilenameTransformer transformer) {
+	public Filegroups getFilesGroupedByTransformedFilename(File parentDirectory, FilenameFilter filenameFilter, FilenameTransformer transformer) {
 		List<File> filesInDirectory = fileRepository.findFilesInDirectory(parentDirectory, filenameFilter);
 
-		MapList filesGroupedByDigitsInFilename = new MapList();
+		Filegroups filesGroupedByDigitsInFilename = new Filegroups();
 
 		for (File file : filesInDirectory) {
 			PictureFile pictureFile = new PictureFile(file);
