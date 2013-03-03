@@ -9,7 +9,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import oma.utils.filrydding.domain.Filegroups;
+import oma.utils.filrydding.domain.FileGroups;
 import oma.utils.filrydding.domain.PictureFile;
 import oma.utils.repository.FileRepository;
 import oma.utils.repository.MobilephotoFilenamefilter;
@@ -50,27 +50,27 @@ public class FileServiceTest {
 	@Test
 	public void shallReturnAListOfFilesWithSameDigitSequenceInTheFilename() throws Exception {
 		when(repoMock.findFilesInDirectory(any(File.class), any(MobilephotoFilenamefilter.class))).thenReturn(mockedFiles);
-		Filegroups duplicatedPictures = duplicateFileFinderService.getFilesGroupedByTransformedFilename(parentDirectory, filenameFilter,
+		FileGroups duplicatedPictures = duplicateFileFinderService.getFilesGroupedByTransformedFilename(parentDirectory, filenameFilter,
 		        filenameTransformer);
 
-		List<PictureFile> pictures = duplicatedPictures.get(filenameTransformer.transformFilename(file_2010_08_28_18_19_19.getName()));
+		List<PictureFile> pictures = duplicatedPictures.getFileGroup(filenameTransformer.transformFilename(file_2010_08_28_18_19_19.getName()));
 
 		assertThat(pictures)
 		        .hasSize(3)
-		        .contains(new PictureFile(file_2010_08_28_18_19_19))
-		        .contains(new PictureFile(file_2010_08_28_18_19_19_1))
-		        .contains(new PictureFile(file_IMG_20100828_181919));
+		        .contains(new PictureFile(fileName_2010_08_28_18_19_19))
+		        .contains(new PictureFile(fileName_2010_08_28_18_19_19_1))
+		        .contains(new PictureFile(fileName_IMG_20100828_181919));
 	}
 	@Test
 	public void shallCreateSeparateGroupsForFilesWithDifferenteDigitSequenceInTheFileName() throws Exception {
 		mockedFiles.add(file_2010_08_22_13_12_13);
 		when(repoMock.findFilesInDirectory(any(File.class), any(MobilephotoFilenamefilter.class))).thenReturn(mockedFiles);
 		
-		Filegroups duplicatedPictures = duplicateFileFinderService.getFilesGroupedByTransformedFilename(parentDirectory, filenameFilter,
+		FileGroups duplicatedPictures = duplicateFileFinderService.getFilesGroupedByTransformedFilename(parentDirectory, filenameFilter,
 		        filenameTransformer);
 
-		List<PictureFile> pictures = duplicatedPictures.get(filenameTransformer.transformFilename(file_2010_08_28_18_19_19.getName()));
-		List<PictureFile> pictures2 = duplicatedPictures.get(filenameTransformer.transformFilename(file_2010_08_22_13_12_13.getName()));
+		List<PictureFile> pictures = duplicatedPictures.getFileGroup(filenameTransformer.transformFilename(file_2010_08_28_18_19_19.getName()));
+		List<PictureFile> pictures2 = duplicatedPictures.getFileGroup(filenameTransformer.transformFilename(file_2010_08_22_13_12_13.getName()));
 
 		assertThat(pictures2).hasSize(1);
 		assertThat(pictures).hasSize(3);

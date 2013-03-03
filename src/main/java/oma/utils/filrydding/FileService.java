@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.util.List;
 
-import oma.utils.filrydding.domain.Filegroups;
+import oma.utils.filrydding.domain.FileGroups;
 import oma.utils.filrydding.domain.PictureFile;
 import oma.utils.repository.FileRepository;
 
@@ -16,15 +16,17 @@ public class FileService {
 		this.fileRepository = fileRepository;
     }
 
-	public Filegroups getFilesGroupedByTransformedFilename(File parentDirectory, FilenameFilter filenameFilter, FilenameTransformer transformer) {
+	public FileGroups getFilesGroupedByTransformedFilename(File parentDirectory, FilenameFilter filenameFilter, FilenameTransformer transformer) {
 		List<File> filesInDirectory = fileRepository.findFilesInDirectory(parentDirectory, filenameFilter);
 
-		Filegroups filesGroupedByDigitsInFilename = new Filegroups();
+		FileGroups filesGroupedByDigitsInFilename = new FileGroups();
 
 		for (File file : filesInDirectory) {
-			PictureFile pictureFile = new PictureFile(file);
-			String digitsInFilename = transformer.transformFilename(pictureFile.getFileName());
-			filesGroupedByDigitsInFilename.put(digitsInFilename, pictureFile);
+			PictureFile pictureFile = new PictureFile(file.getParentFile(), file.getName());
+			String digitsInFilename = transformer.transformFilename(pictureFile.getName());
+			if(!"".equals(digitsInFilename)){
+				filesGroupedByDigitsInFilename.addFileToGroup(digitsInFilename, pictureFile);
+			}
 		}
 
 		return filesGroupedByDigitsInFilename;

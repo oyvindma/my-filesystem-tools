@@ -2,57 +2,15 @@ package oma.utils.filrydding.domain;
 
 import java.io.File;
 
-public class PictureFile{
+public class PictureFile extends File{
 
-	private File file;
+    private static final long serialVersionUID = 1L;
 
-	public PictureFile(File file) {
-		this.file = file;
+	public PictureFile(String file) {
+		super(file);
+    }
+	public PictureFile(File parent, String file) {
+		super(parent, file);
     }
 
-	public String getFileName() {
-        return file.getName();
-    }
-	
-	public long getSize(){
-		return file.length();
-	}
-
-	@Override
-    public int hashCode() {
-	    final int prime = 31;
-	    int result = 1;
-	    result = prime * result + ((file == null) ? 0 : file.hashCode());
-	    return result;
-    }
-
-	@Override
-    public String toString() {
-	    return file.getName();
-    }
-
-	@Override
-    public boolean equals(Object obj) {
-	    if (this == obj) {
-		    return true;
-	    }
-	    if (obj == null) {
-		    return false;
-	    }
-	    if (!(obj instanceof PictureFile)) {
-		    return false;
-	    }
-	    PictureFile other = (PictureFile) obj;
-	    if (file == null) {
-		    if (other.file != null) {
-			    return false;
-		    }
-	    } else if (!file.equals(other.file)) {
-		    return false;
-	    }
-	    return true;
-    }
-	
-	
-	
 }

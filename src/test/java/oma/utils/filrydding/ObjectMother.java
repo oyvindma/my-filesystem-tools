@@ -19,9 +19,9 @@ public class ObjectMother {
 	public static final File file_IMG_20100828_181919 = new File(fileName_IMG_20100828_181919);
 	public static final File dummyFolder = new File("dummyFolder");
 	
-	public static final PictureFile pictureFile_2010_08_28_18_19_19 = new PictureFile(file_2010_08_28_18_19_19);
-	public static final PictureFile pictureFile_2010_08_28_18_19_19_1 = new PictureFile(file_2010_08_28_18_19_19_1);
-	public static final PictureFile pictureFile_IMG_20100828_181919 = new PictureFile(file_IMG_20100828_181919);
-	public static final PictureFile pictureFile_2010_08_22_13_12_13 = new PictureFile(file_2010_08_22_13_12_13);
+	public static final PictureFile pictureFile_2010_08_28_18_19_19 = new PictureFile(fileName_2010_08_28_18_19_19);
+	public static final PictureFile pictureFile_2010_08_28_18_19_19_1 = new PictureFile(fileName_2010_08_28_18_19_19_1);
+	public static final PictureFile pictureFile_IMG_20100828_181919 = new PictureFile(fileName_IMG_20100828_181919);
+	public static final PictureFile pictureFile_2010_08_22_13_12_13 = new PictureFile(fileName_2010_08_22_13_12_13);
 
 }

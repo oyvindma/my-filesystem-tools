@@ -64,4 +64,14 @@ public class FilenameTransformerTest {
 		assertThat(result).isNotNull().isEqualTo("20100828181919");
 		
 	}
+	
+	@Test
+	public void shallReturnEmptyStringIfNoDigitsFound(){
+		String originalFilename = "filename-withouth-digits.txt";
+		
+		String result = transformer.transformFilename(originalFilename);
+		
+		assertThat(result).isNotNull().isEqualTo("");
+		
+	}
 }
